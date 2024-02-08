@@ -1,20 +1,20 @@
-# 1-1 Installation des prérequis
-# On commence par mettre à jour les packages système vers la dernière version
+1-1 Installation des prérequis
+On commence par mettre à jour les packages système vers la dernière version
 sudo apt update sudo apt -y upgrade
 
-#Etape 1 : Installation des packages nécessaires
-#On installe certains packages indispensables comme suite. 
+Etape 1 : Installation des packages nécessaires
+On installe certains packages indispensables comme suite. 
 sudo apt install php apache2 php8.1-fpm freeradius libapache2-mod-php mariadb-server freeradius-mysql freeradius-utils php-{gd,common,mail,mail-mime,mysql,pear,db,mbstring,xml,curl} -y
-#Avec cette commande ci-dessus on a installé Apache2, Freeradius, PHP, et Mariadb serveur d’un seul coup.
+Avec cette commande ci-dessus on a installé Apache2, Freeradius, PHP, et Mariadb serveur d’un seul coup.
 
-#NB: on peut aussi installer cela séparément.
+NB: on peut aussi installer cela séparément.
 
-#Une fois Apache2 activé, on peut configurer le serveur SQL (dans ce cas, le serveur Mariadb).
+Une fois Apache2 activé, on peut configurer le serveur SQL (dans ce cas, le serveur Mariadb).
 
 sudo mysql_secure_installation
 
-#Voici ce qu’on a  répondu lors de l'installation, en fonction de nos besoins de sécurité, On peut  définir un mot de passe root aussi.
-#Enter current password for root (enter for none): enter
+Voici ce qu’on a  répondu lors de l'installation, en fonction de nos besoins de sécurité, On peut  définir un mot de passe root aussi.
+Enter current password for root (enter for none): enter
 
 Switch to unix_socket authentication [Y/n] n
 
