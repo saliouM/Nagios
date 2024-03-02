@@ -1,7 +1,5 @@
-```markdown
-# Installation des prérequis
-
 ## Étape 1: Mise à jour des packages système
+```markdown
 
 ```bash
 sudo apt update
@@ -123,4 +121,3 @@ radtest john password123 127.0.0.1 0 testing123
 - Radius-server[:port]: Adresse IP ou nom de domaine du serveur FreeRadius, suivi éventuellement du port (généralement 1812 pour l'authentification, 1813 pour l'autorisation/accounting).
 - NAS-port-number: Numéro du port NAS (Access-Request).
 - Secret: Le secret partagé entre le client et le serveur, configuré dans `clients.conf`.
-```
