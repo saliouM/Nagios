@@ -1,5 +1,3 @@
-Pour une bonne mise en forme sur GitHub en tant que fichier README, vous pouvez utiliser la syntaxe du format Markdown. Voici une adaptation de votre texte avec une mise en forme Markdown :
-
 ```markdown
 # Installation des prérequis
 
