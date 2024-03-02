@@ -1,20 +1,20 @@
 ## Étape 1: Mise à jour des packages système
 ```markdown
 
-```bash
+```
 sudo apt update
 sudo apt -y upgrade
 ```
 
 ## Étape 2: Installation des packages nécessaires
 
-```bash
+```
 sudo apt install php apache2 php8.1-fpm freeradius libapache2-mod-php mariadb-server freeradius-mysql freeradius-utils php-{gd,common,mail,mail-mime,mysql,pear,db,mbstring,xml,curl} -y
 ```
 
 Après l'installation, configurez le serveur SQL (dans ce cas, le serveur MariaDB).
 
-```bash
+```
 sudo mysql_secure_installation
 ```
 
@@ -24,7 +24,7 @@ Répondez aux questions de l'installation en fonction de vos besoins de sécurit
 
 Connectez-vous à MariaDB et effectuez les opérations nécessaires.
 
-```bash
+```
 sudo mysql -u root -p {mot de passe}
 ```
 
@@ -40,7 +40,7 @@ quit;
 
 Continuez avec la configuration de la base de données pour FreeRadius.
 
-```bash
+```
 sudo su -
 mysql -u root -p radius < /etc/freeradius/3.0/mods-config/sql/main/mysql/schema.sql
 exit
@@ -49,25 +49,25 @@ sudo ln -s /etc/freeradius/3.0/mods-available/sql /etc/freeradius/3.0/mods-enabl
 
 Vérifiez la table créée.
 
-```bash
+```
 sudo mysql -u root -p -e "use radius; show tables;"
 ```
 
 Activez Apache2 et FreeRadius.
 
-```bash
+```
 sudo systemctl enable --now apache2 && sudo systemctl enable freeradius
 ```
 
 Créez un lien symbolique pour le module SQL.
 
-```bash
+```
 sudo ln -s /etc/freeradius/3.0/mods-available/sql /etc/freeradius/3.0/mods-enabled/
 ```
 
 Configurez le module SQL.
 
-```bash
+```
 sudo nano /etc/freeradius/3.0/mods-enabled/sql
 ```
 
@@ -75,7 +75,7 @@ sudo nano /etc/freeradius/3.0/mods-enabled/sql
 
 Changez les droits du fichier SQL.
 
-```bash
+```
 sudo chgrp -h freerad /etc/freeradius/3.0/mods-available/sql
 sudo chown -R freerad:freerad /etc/freeradius/3.0/mods-enabled/sql
 sudo systemctl restart freeradius
@@ -85,7 +85,7 @@ sudo systemctl restart freeradius
 
 Consultez les fichiers "client.conf" et "user" pour configurer les clients autorisés et les utilisateurs.
 
-```bash
+```
 su - root
 cd /etc/freeradius/3.0
 nano clients.conf
@@ -96,13 +96,13 @@ nano users
 
 Modifiez le fichier de configuration principal de FreeRadius.
 
-```bash
+```
 nano /etc/freeradius/3.0/radiusd.conf
 ```
 
 Redémarrez le service FreeRadius.
 
-```bash
+```
 sudo systemctl restart freeradius.service
 ```
 
@@ -112,7 +112,7 @@ sudo systemctl restart freeradius.service
 
 Utilisez l'outil `radtest` pour tester la connexion.
 
-```bash
+```
 radtest john password123 127.0.0.1 0 testing123
 ```
 
